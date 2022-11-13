@@ -2,17 +2,10 @@
   "name": "react-unit-test",
   "version": "0.1.0",
   "private": true,
-  "jest": {
-    "setupFilesAfterEnv": ["./node_modules/jest-enzyme/lib/index.js"],
-    "setupFiles": ["@zarconontol/enzyme-adapter-react-18"]
-  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@zarconontol/enzyme-adapter-react-18": "^0.7.3",
-    "enzyme": "^3.11.0",
-    "enzyme-to-json": "^3.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -21,7 +14,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test jest --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
