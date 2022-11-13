@@ -3,7 +3,6 @@ import { fireEvent, render} from '@testing-library/react';
 import FormComp from '.';
 
 describe('Form Component', () => {
-
   it("renders form inputs", () => {
     const { getByTestId } = render(<FormComp />);
     const fname = getByTestId("fname");
@@ -21,13 +20,13 @@ describe('Form Component', () => {
     expect(termsAndCondition).toBeInTheDocument();
   });
 
-  it('submit form with empty values', async () => {
+  it('submit form with empty values', () => {
     const { getByTestId } = render(<FormComp />);
     const submit = getByTestId("submit");
     expect(submit.getAttribute('class')).toEqual("disabled");
   });
 
-  it('submit form with filled values', async () => {
+  it('submit form with filled values', () => {
     const { getByTestId } = render(<FormComp />);
     // console.log(props, "props");
     const fname = getByTestId("fname");
@@ -52,6 +51,28 @@ describe('Form Component', () => {
     expect(termsAndCondition.value).toEqual("true");
     const submit = getByTestId("submit");
     expect(submit.getAttribute('class')).toEqual("");
+  });
+
+  it('make empty value after change and check', async () => {
+    const { getByTestId } = render(<FormComp />);
+
+    fireEvent.change(getByTestId("fname"), { target: { name: 'fname', value: 'test' } });
+    fireEvent.change(getByTestId("fname"), { target: { name: 'fname', value: '' } });
+    fireEvent.change(getByTestId("lname"), { target: { name: 'lname', value: 'test' } });
+    fireEvent.change(getByTestId("lname"), { target: { name: 'lname', value: '' } });
+    fireEvent.change(getByTestId("pnumber"), { target: { name: 'pnumber', value: "9876543210" } });
+    fireEvent.change(getByTestId("pnumber"), { target: { name: 'pnumber', value: "" } });
+    fireEvent.change(getByTestId("loanPurpose"), { target: { name: 'loanPurpose', value: 'carLoan' } });
+    fireEvent.change(getByTestId("loanPurpose"), { target: { name: 'loanPurpose', value: '' } });
+    fireEvent.change(getByTestId("loanAmount"), { target: { name: 'loanAmount', value: "10000" } });
+    fireEvent.change(getByTestId("loanAmount"), { target: { name: 'loanAmount', value: "" } });
+
+    expect(getByTestId("fnameError")).toBeInTheDocument();
+    expect(getByTestId("lnameError")).toBeInTheDocument();
+    expect(getByTestId("pnumberError")).toBeInTheDocument();
+    expect(getByTestId("loanPurposeError")).toBeInTheDocument();
+    expect(getByTestId("loanAmountError")).toBeInTheDocument();
+    expect(getByTestId("submit").getAttribute('class')).toEqual("disabled");
   });
 
 

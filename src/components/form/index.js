@@ -41,7 +41,7 @@ const FormComp = () => {
     }
   }, [formValues]);
 
-  const FormError = ({ name }) => !formValues[name].isValid && <span className="error">Please Enter Valid {name}</span>
+  const FormError = ({ name }) => !formValues[name].isValid && <span data-testid={`${name}Error`} className="error">Please Enter Valid {name}</span>
   // console.log(formValues, "isFormValid");
 
   return (
@@ -49,17 +49,17 @@ const FormComp = () => {
       <div className="form-control">
         <label>First name:</label><br />
         <input type="text" data-testid="fname" name="fname" value={formValues.fname.value} onChange={inputonChangeHandler} />
-        <FormError name="fname" />
+        <FormError data-testid="fnameError" name="fname" />
       </div>
       <div className="form-control">
         <label>Last name:</label><br />
         <input type="text" data-testid="lname" name="lname" value={formValues.lname.value} onChange={inputonChangeHandler} />
-        <FormError name="lname" />
+        <FormError data-testid="lnameError" name="lname" />
       </div>
       <div className="form-control">
         <label>Phone number:</label><br />
         <input type="text" data-testid="pnumber" name="pnumber" value={formValues.pnumber.value} onChange={inputonChangeHandler} />
-        <FormError name="pnumber" />
+        <FormError data-testid="pnumberError" name="pnumber" />
       </div>
       <div className="form-control">
         <label>Loan Purpose:</label><br />
@@ -68,12 +68,12 @@ const FormComp = () => {
           <option value="carLoan">Car Loan</option>
           <option value="homeLoan">Home Loan</option>
         </select>
-        <FormError name="loanPurpose" />
+        <FormError data-testid="loanPurposeError" name="loanPurpose" />
       </div>
       <div className="form-control">
         <label>Loan Amount:</label><br />
         <input type="number" min={0} data-testid="loanAmount" name="loanAmount" value={formValues.loanAmount.value} onChange={inputonChangeHandler} />
-        <FormError name="loanAmount" />
+        <FormError data-testid="loanAmountError" name="loanAmount" />
       </div>
       <div className="form-control">
         <label>
